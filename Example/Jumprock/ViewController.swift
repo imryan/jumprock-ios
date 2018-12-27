@@ -7,18 +7,39 @@
 //
 
 import UIKit
+import Jumprock
 
 class ViewController: UIViewController {
-
+    
+    // MARK: - Functions
+    
+    private func sendJumprockForm() {
+        // Create a form
+        let form = JumprockForm(subject: "Hello, world!", message: "Some message.",
+                                phone: "9088393634", name: "Ryan Cohen",
+                                replyToAddress: "notryancohen@gmail.com",
+                                redirectURLString: nil, cc: ["ryan@hellowynd.com", "notryancohen666@gmail.com"], bcc: nil)
+        
+        // Send the form
+        Jumprock.send(form, fromAlias: "notryancohen") { (error) in
+            if let error = error {
+                debugPrint("Did not send email:", error)
+            }
+            else {
+                debugPrint("Sent email!")
+            }
+        }
+    }
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        sendJumprockForm()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
-
