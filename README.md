@@ -13,10 +13,13 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ### Create form
 ```swift
-let form = JumprockForm(subject: "Hello, world!", message: "Some message.",
-                          phone: "2125551234", name: "John Doe",
+let form = JumprockForm(subject: "Hello, world!", 
+                        message: "Some message.",
+                          phone: "2125551234", 
+                           name: "John Doe",
                  replyToAddress: "you@me.com",
-              redirectURLString: nil, cc: ["someone@me.com", "someone@me.com"], bcc: nil)
+              redirectURLString: nil, 
+                             cc: ["someone@me.com", "someone@me.com"], bcc: nil)
 ```
 ### Send form
 ```swift
