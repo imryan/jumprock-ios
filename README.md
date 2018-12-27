@@ -9,8 +9,26 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
+## Usage
 
+### Create form
+```swift
+let form = JumprockForm(subject: "Hello, world!", message: "Some message.",
+                          phone: "2125551234", name: "John Doe",
+                 replyToAddress: "notryancohen@gmail.com",
+              redirectURLString: nil, cc: ["ryan@hellowynd.com", "notryancohen666@gmail.com"], bcc: nil)
+```
+### Send form
+```swift
+Jumprock.send(form, fromAlias: "ALIAS") { (error) in
+    if let error = error {
+        debugPrint("Did not send email:", error)
+    }
+    else {
+      debugPrint("Sent email!")
+   }
+}
+```
 ## Installation
 
 Jumprock is available through [CocoaPods](https://cocoapods.org). To install
