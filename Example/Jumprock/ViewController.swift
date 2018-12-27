@@ -15,13 +15,17 @@ class ViewController: UIViewController {
     
     private func sendJumprockForm() {
         // Create a form
-        let form = JumprockForm(subject: "Hello, world!", message: "Some message.",
-                                phone: "9088393634", name: "Ryan Cohen",
-                                replyToAddress: "notryancohen@gmail.com",
-                                redirectURLString: nil, cc: ["ryan@hellowynd.com", "notryancohen666@gmail.com"], bcc: nil)
+        let form = JumprockForm(subject: "Hello, world!",
+                                message: "Some message.",
+                                phone: "2125551234",
+                                name: "Ryan Cohen",
+                                replyToAddress: "someone@me.com",
+                                redirectURLString: nil,
+                                cc: ["someone@me.com", "someone_else@me.com"],
+                                bcc: nil)
         
         // Send the form
-        Jumprock.send(form, fromAlias: "notryancohen") { (error) in
+        Jumprock.send(form, fromAlias: "YOUR_ALIAS") { (error) in
             if let error = error {
                 debugPrint("Did not send email:", error)
             }

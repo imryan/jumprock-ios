@@ -11,24 +11,28 @@ public struct JumprockForm {
     
     /// Form subject
     public let subject: String?
+    
     /// Form message content
     public let message: String?
     
-    /// Form send-to email address
-    // let email: String?
-    
     /// Form phone number
     public let phone: String?
+    
     /// Form person's name
     public let name: String?
+    
     /// Form reply-to email address
     public let replyToAddress: String?
+    
     /// Form redirect to webpage URL string
     public let redirectURLString: String?
+    
     /// Form CC recipients
     public let cc: [String]?
+    
     /// Form BCC recipients
     public let bcc: [String]?
+    
     /// Form anti-spam flag
     public let trapIt: Bool?
     
@@ -63,7 +67,7 @@ public struct JumprockForm {
             "redirectURLString" : redirectURLString,
             "cc" : cc,
             "bcc" : bcc,
-            "trapIt" : trapIt
+            "trapit" : trapIt
         ]
         
         var parameterString: String = ""
