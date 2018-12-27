@@ -33,13 +33,22 @@ public struct JumprockForm {
     /// Form BCC recipients
     public let bcc: [String]?
     
+    /// Custom form logo image (premium only)
+    public let logoImageURLString: String?
+    
+    /// Hide Jumprock branding (premium only)
+    public let hideBranding: Bool?
+    
     // MARK: - Initialization
     
     public init(subject: String? = nil, message: String? = nil,
-                phone: String? = nil, name: String? = nil,
+                phone: String? = nil,
+                name: String? = nil,
                 replyToAddress: String? = nil,
                 redirectURLString: String? = nil,
-                cc: [String]? = nil, bcc: [String]? = nil) {
+                cc: [String]? = nil, bcc: [String]? = nil,
+                logoImageURLString: String? = nil,
+                hideBranding: Bool = false) {
         
         self.subject = subject
         self.message = message
@@ -47,6 +56,8 @@ public struct JumprockForm {
         self.name = name
         self.replyToAddress = replyToAddress
         self.redirectURLString = redirectURLString
+        self.logoImageURLString = logoImageURLString
+        self.hideBranding = hideBranding
         self.cc = cc
         self.bcc = bcc
     }
@@ -59,11 +70,13 @@ public struct JumprockForm {
             "message" : message,
             "phone" : phone,
             "name" : name,
-            "replyToAddress" : replyToAddress,
-            "redirectURLString" : redirectURLString,
             "cc" : cc,
             "bcc" : bcc,
-            "trapit" : ""
+            "trapit" : "",
+            "replyToAddress" : replyToAddress,
+            "redirectURLString" : redirectURLString,
+            "logo" : logoImageURLString,
+            "branding" : hideBranding
         ]
         
         var parameterString: String = ""
