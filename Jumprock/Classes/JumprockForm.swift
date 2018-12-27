@@ -33,16 +33,13 @@ public struct JumprockForm {
     /// Form BCC recipients
     public let bcc: [String]?
     
-    /// Form anti-spam flag
-    public let trapIt: Bool?
-    
     // MARK: - Initialization
     
     public init(subject: String? = nil, message: String? = nil,
                 phone: String? = nil, name: String? = nil,
                 replyToAddress: String? = nil,
                 redirectURLString: String? = nil,
-                cc: [String]? = nil, bcc: [String]? = nil, trapIt: Bool = true) {
+                cc: [String]? = nil, bcc: [String]? = nil) {
         
         self.subject = subject
         self.message = message
@@ -52,7 +49,6 @@ public struct JumprockForm {
         self.redirectURLString = redirectURLString
         self.cc = cc
         self.bcc = bcc
-        self.trapIt = trapIt
     }
     
     // MARK: - Helpers
@@ -67,7 +63,7 @@ public struct JumprockForm {
             "redirectURLString" : redirectURLString,
             "cc" : cc,
             "bcc" : bcc,
-            "trapit" : trapIt
+            "trapit" : ""
         ]
         
         var parameterString: String = ""

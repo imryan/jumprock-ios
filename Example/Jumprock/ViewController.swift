@@ -25,7 +25,7 @@ class ViewController: UIViewController {
                                 bcc: nil)
         
         // Send the form
-        Jumprock.send(form, fromAlias: "YOUR_ALIAS") { (error) in
+        Jumprock.send(form, fromAlias: "notryancohen") { (error) in
             if let error = error {
                 debugPrint("Did not send email:", error)
             }

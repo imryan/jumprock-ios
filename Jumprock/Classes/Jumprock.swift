@@ -10,7 +10,7 @@ open class Jumprock {
     
     // MARK: - Attributes
     
-    private static let BASE_URL: String = "jumprock.co/mail/%@"
+    private static let BASE_URL: String = "https://jumprock.co/mail/%@"
     
     public typealias JumprockCompletionBlock = (_ error: Error?) -> Void
     
@@ -20,7 +20,6 @@ open class Jumprock {
         var request = URLRequest(url: URL(string: String(format: BASE_URL, alias))!)
         request.httpMethod = "POST"
         request.httpBody = form.asParameters().data(using: .ascii)
-        debugPrint(form.asParameters())
         
         URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { (_, _, error) -> Void in
             if let error = error {
