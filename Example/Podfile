@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Jumprock_Example' do
+  pod 'Jumprock', :path => '../'
+
+  target 'Jumprock_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
