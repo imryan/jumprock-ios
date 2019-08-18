@@ -10,20 +10,32 @@ open class Jumprock {
     
     // MARK: - Attributes
     
-    private static let BASE_URL: String = "https://jumprock.co/mail/%@"
+    public enum JumprockError: Error {
+        case error(String)
+        case badData
+    }
     
-    public typealias JumprockCompletionBlock = (_ error: Error?) -> Void
+    /// Jumprock API base URL
+    private static let kJumprockBaseURLString: String = "https://jumprock.co/mail/%@"
+    
+    /// Form submission request completion block
+    public typealias JumprockCompletionBlock = (_ error: JumprockError?) -> Void
     
     // MARK: - Functions
     
     public static func send(_ form: JumprockForm, fromAlias alias: String, block: @escaping JumprockCompletionBlock) {
-        var request = URLRequest(url: URL(string: String(format: BASE_URL, alias))!)
+        guard let url = URL(string: String(format: kJumprockBaseURLString, alias)), let httpBody = form.httpBody() else {
+            block(.badData)
+            return
+        }
+        
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.httpBody = form.asParameters().data(using: .ascii)
+        request.httpBody = httpBody
         
         URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { (_, _, error) -> Void in
             if let error = error {
-                block(error)
+                block(.error(error.localizedDescription))
             } else {
                 block(nil)
             }

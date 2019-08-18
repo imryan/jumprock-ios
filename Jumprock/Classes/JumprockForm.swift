@@ -41,6 +41,19 @@ public struct JumprockForm {
     
     // MARK: - Initialization
     
+    /// Initialize form
+    ///
+    /// - Parameters:
+    ///   - subject: Form subject
+    ///   - message: Form message content
+    ///   - phone: Form phone number
+    ///   - name: Form person's name
+    ///   - replyToAddress: Form reply-to email address
+    ///   - redirectURLString: Form redirect to webpage URL string
+    ///   - cc: Form CC recipients
+    ///   - bcc: Form BCC recipients
+    ///   - logoImageURLString: Custom form logo image (premium only)
+    ///   - hideBranding: Hide Jumprock branding (premium only)
     public init(subject: String? = nil, message: String? = nil,
                 phone: String? = nil,
                 name: String? = nil,
@@ -49,7 +62,6 @@ public struct JumprockForm {
                 cc: [String]? = nil, bcc: [String]? = nil,
                 logoImageURLString: String? = nil,
                 hideBranding: Bool = false) {
-        
         self.subject = subject
         self.message = message
         self.phone = phone
@@ -61,22 +73,26 @@ public struct JumprockForm {
         self.cc = cc
         self.bcc = bcc
     }
+}
+
+extension JumprockForm {
     
-    // MARK: - Helpers
-    
-    public func asParameters() -> String {
-        let components: [String : Any?] = [
-            "subject" : subject,
-            "message" : message,
-            "phone" : phone,
-            "name" : name,
-            "cc" : cc,
-            "bcc" : bcc,
-            "trapit" : "",
-            "replyToAddress" : replyToAddress,
-            "redirectURLString" : redirectURLString,
-            "logo" : logoImageURLString,
-            "branding" : hideBranding
+    /// HTTP body data
+    ///
+    /// - Returns: Optional parameterized form `Data`
+    public func httpBody() -> Data? {
+        let components: [String: Any?] = [
+            "subject": subject,
+            "message": message,
+            "phone": phone,
+            "name": name,
+            "cc": cc,
+            "bcc": bcc,
+            "trapit": "",
+            "replyToAddress": replyToAddress,
+            "redirectURLString": redirectURLString,
+            "logo": logoImageURLString,
+            "branding": hideBranding
         ]
         
         var parameterString: String = ""
@@ -94,6 +110,8 @@ public struct JumprockForm {
         }
         
         parameterString.removeFirst(1)
-        return parameterString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        parameterString = parameterString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        
+        return parameterString.data(using: .ascii)
     }
 }

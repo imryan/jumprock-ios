@@ -1,0 +1,16 @@
+PODS:
+  - Jumprock (1.0.1)
+
+DEPENDENCIES:
+  - Jumprock (from `../`)
+
+EXTERNAL SOURCES:
+  Jumprock:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Jumprock: 898dd22f6bc0a6aafa9e416f7dd3cf5c88c9071f
+
+PODFILE CHECKSUM: 5f691adff98f39d3ce49eaf70c38a655f8514e6f
+
+COCOAPODS: 1.7.1
